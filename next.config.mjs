@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  serverExternalPackages: ["@e2b/code-interpreter"],
+  transpilePackages: ["@e2b/code-interpreter", "e2b"],
 };
 
 export default nextConfig;
