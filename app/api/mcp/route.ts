@@ -464,4 +464,38 @@ const handler = createMcpHandler(
   }
 );
 
-export { handler as GET, handler as POST };
+export async function GET(request: Request) {
+  try {
+    return await handler(request);
+  } catch (err: any) {
+    console.error("MCP GET error:", err);
+    return new Response(
+      JSON.stringify({
+        error: err?.message || String(err),
+        stack: err?.stack,
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  }
+}
+
+export async function POST(request: Request) {
+  try {
+    return await handler(request);
+  } catch (err: any) {
+    console.error("MCP POST error:", err);
+    return new Response(
+      JSON.stringify({
+        error: err?.message || String(err),
+        stack: err?.stack,
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  }
+}
